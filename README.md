@@ -1,7 +1,12 @@
-# bard-autocomplete README
+# Autocomplete README
+An AI Autocomplete Extension that works for my uses.
 
-This is the README for your extension "bard-autocomplete". After writing up a brief description, we recommend including the following sections.
+## To Do
+- Instead of CompletionItem maybe use grayed out text
+- Allow multiline questions to provide context
 
+
+# Everything below this is a to do if I actually decide to publish this
 ## Features
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
@@ -18,14 +23,7 @@ If you have any requirements or dependencies, add a section describing those and
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+To Do
 
 ## Known Issues
 
