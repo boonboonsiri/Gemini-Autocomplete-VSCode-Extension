@@ -1,5 +1,5 @@
 .vscode/
-node_modules/
+aanode_modules/
 *.log
 tests/
 .git/
