@@ -1,35 +1,59 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+// Access your API key as an environment variable.
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-
-function stripCommentMarkers(input) {
+const stripCommentMarkers = (input) => {
 	// Remove leading //
 	let stripped = input.replace(/^\/\/\s*/, '');
-
 	// Remove trailing @
 	stripped = stripped.replace(/\s*@$/, '');
-
 	return stripped.trim();
 }
 
 const strip = (text, position) => {
 	const linesArray = text.split('\n');
 	const line = linesArray[position];
-
-	console.log(stripCommentMarkers(line))
 	return stripCommentMarkers(line)
+}
 
+const stripCode = (text) => {
+    const lines = text.split('\n');
+    if (lines.length <= 2) {
+        return '';
+    }
+    lines.shift();
+    lines.pop();
+    return lines.join('\n');
+}
+const geminiResponse = (text, language) => {
+  // Choose a model that's appropriate for your use case.
+	console.log(text, language)
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
+  //const prompt = `${language} ${text} code only`
+	const prompt = 'python for loop code only'
 
+  return model.generateContent(prompt).then((result) => {
+    const response = result.response;
+    const text = stripCode(response.text());
+		console.log(text)
 
+		const item = new vscode.CompletionItem(`\n${text}`, vscode.CompletionItemKind.Text);
+		item.detail = 'Gemini Autocomplete'
+		item.documentation = text
+
+		return item;
+  });
 }
 /**
  * @param {vscode.ExtensionContext} context
  */
+// This method is called when your extension is activated
+// Your extension is activated the very first time the command is executed
 function activate(context) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
@@ -51,51 +75,29 @@ function activate(context) {
 		'javascript', // language id
 		{
 			provideCompletionItems(document, position, token, context) {
-				console.log('testing')
+				const line = strip(document.getText(), position.line)
+				const data =  geminiResponse(line, document.languageId)
+				//setTimeout(()=>{}, 2000);
+				// return data.then((data) => {
+				// 	return [data]
+				// })
+				// return data;
 
-				const item = new vscode.CompletionItem('\nmy name is boon', vscode.CompletionItemKind.Text);
-				item.detail = 'hello testing'
-				item.documentation = '123'
-				// item.detail = suggestion.detail;
-				// item.documentation = suggestion.documentation;
+				// Testing
+				const text = 'monkey'//stripCode(response.text());
+				console.log(text)
 
-				//console.log(document, position, token, context)
-				// console.log(document.getText())
-				console.log(position.line)
-				strip(document.getText(), position.line)
-
-
+				const item = new vscode.CompletionItem(`\n${text}`, vscode.CompletionItemKind.Text);
+				item.detail = 'Gemini Autocomplete'
+				item.documentation = text
 				return [item];
-
-				// Fetch autocomplete suggestions from your API
-				return fetch('https://your-api.com/autocomplete', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						text: document.getText(),
-						position: position.character
-					})
-				})
-					.then(response => response.json())
-					.then(data => {
-						return data.suggestions.map(suggestion => {
-							const item = new vscode.CompletionItem(suggestion.label, vscode.CompletionItemKind.Text);
-							item.detail = suggestion.detail;
-							item.documentation = suggestion.documentation;
-							return item;
-						});
-					});
 			}
 		},
 		'@' // Trigger the completion with dot (you can customize this)
 	);
 
-	console.log("TESTING")
 
 	context.subscriptions.push(provider);
-
-
-
 	context.subscriptions.push(disposable);
 }
 
