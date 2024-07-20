@@ -3,6 +3,7 @@
   "displayName": "bard-autocomplete",
   "description": "an autocomplete in vscode for how I want to use a vscode extension",
   "version": "0.0.1",
+  "publisher": "BoonBoonsiri",
   "engines": {
     "vscode": "^1.91.0"
   },
