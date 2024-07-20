@@ -1,9 +1,13 @@
 {
-  "name": "bard-autocomplete",
-  "displayName": "bard-autocomplete",
-  "description": "an autocomplete in vscode for how I want to use a vscode extension",
+  "name": "gemini-autocomplete",
+  "displayName": "Gemini Autocomplete",
+  "description": "An Gemini AI autocomplete in vscode for how I want to use a vscode autocomplete extension",
   "version": "0.0.1",
   "publisher": "BoonBoonsiri",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boonboonsiri/Gemini-Autocomplete-VSCode-Extension.git"
+  },
   "engines": {
     "vscode": "^1.91.0"
   },
@@ -18,8 +22,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "bard-autocomplete.helloWorld",
-        "title": "Hello World"
+        "command": "gemini-autocomplete.activate",
+        "title": "Activate Gemini Assistant"
       }
     ]
   },

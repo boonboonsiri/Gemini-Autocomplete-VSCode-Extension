@@ -31,15 +31,13 @@ const stripCode = (text) => {
 }
 const geminiResponse = (text, language) => {
 	// Choose a model that's appropriate for your use case.
-	console.log(text, language)
 	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-	const prompt = `${language} ${text} short example, code only`
+	const prompt = `${language} ${text} small amount, include the code only`
 
 	return model.generateContent(prompt).then((result) => {
 		const response = result.response;
 		const text = stripCode(response.text());
-		console.log(text)
 
 		const item = new vscode.CompletionItem(`\n${text}`, vscode.CompletionItemKind.Text);
 		item.detail = 'Gemini Autocomplete'
@@ -55,28 +53,33 @@ const geminiResponse = (text, language) => {
 // Your extension is activated the very first time the command is executed
 function activate(context) {
 
-	/*// Use the console to output diagnostic information (console.log) and errors (console.error)
+	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('bard-autocomplete.helloWorld', function () {
+	const disposable = vscode.commands.registerCommand('gemini-autocomplete.activate', function () {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from bard-autocomplete!');
+		vscode.window.showInformationMessage('Gemini Autocomplete Activated');
 	});
 	context.subscriptions.push(disposable);
-	*/
+
 
 	context.subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(
-			['javascript', 'typescript', 'python', 'cpp', 'rust', 'kotlin', 'c', 'go'], // Array of language IDs
-			new MyCompletionItemProvider(),
+			[
+				'javascript', 'typescript', 'python', 'cpp', 'rust', 'kotlin',
+				'c', 'go', 'java', 'php', 'ruby', 'swift', 'objective-c',
+				'perl', 'shellscript', 'scala', 'haskell', 'dart', 'r',
+				'matlab', 'lua', 'css', 'html'
+			],
+			new AIItemProvider(),
 			'@' // Trigger character
 		)
 	);
 }
 
-class MyCompletionItemProvider {
+class AIItemProvider {
 	provideCompletionItems(document, position, token, context) {
 		// Return a Promise that resolves with the completion items
 		return new Promise(async (resolve, reject) => {

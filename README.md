@@ -1,63 +1,36 @@
-# Autocomplete README
-An AI Autocomplete Extension that works for my uses.
+# Gemini Autocomplete README
+An AI Autocomplete Extension that works for my uses but feel free to use it as well.
+
+## Setting up
+
+Get an Gemini API key from https://aistudio.google.com/app/apikey and set it as `GEMINI_API_KEY` as an environment variable.
+
+You have to enable the extension per workspace. Do this by using the command palette and doing `> Activate Gemini Assistant`
+
+## Features
+
+Ask Gemini for coding help using @. It will search everything that is on that line.
+
+![Single line demo](media/single-line-demo.gif)
+
+
+Support languages include javascript, typescript, python, cpp, rust, kotlin, c, go, java, php, ruby, swift, objective-c, perl, shellscript, scala, haskell, dart, r, matlab, lua, css, html
+
+## Privacy and Data Collection
+
+This extension does not collect any user data however information is being sent to Google Gemini's API. Only the lines that are selected are sent to Gemini.
+
 
 ## To Do
 - Instead of CompletionItem maybe use grayed out text
 - Allow multiline questions to provide context
-
-
-# Everything below this is a to do if I actually decide to publish this
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-To Do
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Maybe set up GitHub CI (is this really needed?)
+- Auto Activate?
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+See full [change log](./CHANGELOG.md)
 
-### 1.0.0
+### 1.0.0 - 2024-07-19
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release of Gemini Autocomplete.
