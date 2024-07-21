@@ -33,11 +33,13 @@ const geminiResponse = (text, language) => {
 	// Choose a model that's appropriate for your use case.
 	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-	const prompt = `${language} ${text} small amount, include the code only`
+  const prompt = `${language} ${text} small amount, include the code only`
 
 	return model.generateContent(prompt).then((result) => {
+		console.log("ERE")
 		const response = result.response;
 		const text = stripCode(response.text());
+		console.log(text)
 
 		const item = new vscode.CompletionItem(`\n${text}`, vscode.CompletionItemKind.Text);
 		item.detail = 'Gemini Autocomplete'
@@ -57,11 +59,14 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('gemini-autocomplete.activate', function () {
+	const disposable = vscode.commands.registerCommand('gemini-autocomplete.activate', async function () {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Gemini Autocomplete Activated');
+    // Get the current position of the cursor
 
+    // Manually trigger the completion
+    await vscode.commands.executeCommand('editor.action.triggerSuggest');
 	});
 	context.subscriptions.push(disposable);
 
@@ -95,9 +100,21 @@ class AIItemProvider {
 	}
 
 	async getCompletionItems(document, position, token) {
-		const line = strip(document.getText(), position.line)
-		const data = await geminiResponse(line, document.languageId)
-		return data;
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+    const selection = editor.selection;
+    const selectedText = editor.document.getText(selection);
+
+		if (selectedText.length > 0) {
+			const data = await geminiResponse(selectedText, document.languageId)
+			return data;
+		} else {
+			const line = strip(document.getText(), position.line)
+			const data = await geminiResponse(line, document.languageId)
+			return data;
+		}
 	}
 }
 

@@ -2,7 +2,7 @@
   "name": "gemini-autocomplete",
   "displayName": "Gemini Autocomplete",
   "description": "An Gemini AI autocomplete in vscode for how I want to use a vscode autocomplete extension",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "publisher": "BoonBoonsiri",
   "repository": {
     "type": "git",
@@ -15,16 +15,160 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:typescript",
     "onLanguage:javascript",
-    "onLanguage:python"
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:cpp",
+    "onLanguage:rust",
+    "onLanguage:kotlin",
+    "onLanguage:c",
+    "onLanguage:go",
+    "onLanguage:java",
+    "onLanguage:php",
+    "onLanguage:ruby",
+    "onLanguage:swift",
+    "onLanguage:objective-c",
+    "onLanguage:perl",
+    "onLanguage:shellscript",
+    "onLanguage:scala",
+    "onLanguage:haskell",
+    "onLanguage:dart",
+    "onLanguage:r",
+    "onLanguage:matlab",
+    "onLanguage:lua",
+    "onLanguage:css",
+    "onLanguage:html"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "gemini-autocomplete.activate",
-        "title": "Activate Gemini Assistant"
+        "title": "Gemini Assistant: Activate Gemini Assistant"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "gemini-autocomplete.activate",
+        "key": "alt+g",
+        "when": "editorTextFocus"
+      }
+    ],
+    "languages": [
+      {
+        "id": "javascript",
+        "aliases": ["JavaScript", "javascript"],
+        "extensions": [".js", ".mjs", ".cjs"]
+      },
+      {
+        "id": "typescript",
+        "aliases": ["TypeScript", "typescript"],
+        "extensions": [".ts", ".tsx"]
+      },
+      {
+        "id": "python",
+        "aliases": ["Python", "python"],
+        "extensions": [".py", ".rpy", ".pyw", ".cpy", ".gyp", ".gypi"]
+      },
+      {
+        "id": "cpp",
+        "aliases": ["C++", "cpp"],
+        "extensions": [".cpp", ".cxx", ".cc", ".c++", ".hpp", ".hxx", ".hh", ".h++"]
+      },
+      {
+        "id": "rust",
+        "aliases": ["Rust", "rust"],
+        "extensions": [".rs"]
+      },
+      {
+        "id": "kotlin",
+        "aliases": ["Kotlin", "kotlin"],
+        "extensions": [".kt", ".kts"]
+      },
+      {
+        "id": "c",
+        "aliases": ["C", "c"],
+        "extensions": [".c", ".h"]
+      },
+      {
+        "id": "go",
+        "aliases": ["Go", "go"],
+        "extensions": [".go"]
+      },
+      {
+        "id": "java",
+        "aliases": ["Java", "java"],
+        "extensions": [".java"]
+      },
+      {
+        "id": "php",
+        "aliases": ["PHP", "php"],
+        "extensions": [".php", ".php4", ".php5", ".phtml", ".phps"]
+      },
+      {
+        "id": "ruby",
+        "aliases": ["Ruby", "ruby"],
+        "extensions": [".rb", ".rbw", ".rake", ".gemspec", ".podspec", ".thor", ".irbrc"]
+      },
+      {
+        "id": "swift",
+        "aliases": ["Swift", "swift"],
+        "extensions": [".swift"]
+      },
+      {
+        "id": "objective-c",
+        "aliases": ["Objective-C", "objective-c"],
+        "extensions": [".m", ".h"]
+      },
+      {
+        "id": "perl",
+        "aliases": ["Perl", "perl"],
+        "extensions": [".pl", ".pm", ".t", ".pod"]
+      },
+      {
+        "id": "shellscript",
+        "aliases": ["Shell Script", "shellscript"],
+        "extensions": [".sh", ".bash", ".bats", ".cgi", ".command", ".fcgi", ".ksh", ".tmux", ".tool", ".zsh"]
+      },
+      {
+        "id": "scala",
+        "aliases": ["Scala", "scala"],
+        "extensions": [".scala", ".sc"]
+      },
+      {
+        "id": "haskell",
+        "aliases": ["Haskell", "haskell"],
+        "extensions": [".hs", ".lhs"]
+      },
+      {
+        "id": "dart",
+        "aliases": ["Dart", "dart"],
+        "extensions": [".dart"]
+      },
+      {
+        "id": "r",
+        "aliases": ["R", "r"],
+        "extensions": [".r", ".rdata", ".rds", ".rda"]
+      },
+      {
+        "id": "matlab",
+        "aliases": ["MATLAB", "matlab"],
+        "extensions": [".m"]
+      },
+      {
+        "id": "lua",
+        "aliases": ["Lua", "lua"],
+        "extensions": [".lua"]
+      },
+      {
+        "id": "css",
+        "aliases": ["CSS", "css"],
+        "extensions": [".css"]
+      },
+      {
+        "id": "html",
+        "aliases": ["HTML", "html"],
+        "extensions": [".html", ".htm", ".shtml", ".xhtml"]
       }
     ]
   },
