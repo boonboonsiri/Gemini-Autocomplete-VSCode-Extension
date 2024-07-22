@@ -27,19 +27,28 @@ const stripCode = (text) => {
 	}
 	lines.shift();
 	lines.pop();
+
+	// Sometimes you need to pop twice for some reason
+	if (lines[lines.length - 1] == '```') {
+		lines.pop();
+	}
 	return lines.join('\n');
 }
 const geminiResponse = (text, language) => {
-	// Choose a model that's appropriate for your use case.
 	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const prompt = `${language} ${text} small amount, include the code only`
+	var prompt = `${language} ${text} small amount, include the code only`
+	var formatFunction = stripCode;
+
+	// Yeah this is not hte best way to do this
+	if (text.includes('ggemini')) {
+		prompt = text;
+		formatFunction = (text) => text;
+	}
 
 	return model.generateContent(prompt).then((result) => {
-		console.log("ERE")
 		const response = result.response;
-		const text = stripCode(response.text());
-		console.log(text)
+		const text = formatFunction(response.text());
 
 		const item = new vscode.CompletionItem(`\n${text}`, vscode.CompletionItemKind.Text);
 		item.detail = 'Gemini Autocomplete'
@@ -54,22 +63,13 @@ const geminiResponse = (text, language) => {
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 function activate(context) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
 	const disposable = vscode.commands.registerCommand('gemini-autocomplete.activate', async function () {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
 		vscode.window.showInformationMessage('Gemini Autocomplete Activated');
-    // Get the current position of the cursor
 
     // Manually trigger the completion
     await vscode.commands.executeCommand('editor.action.triggerSuggest');
 	});
 	context.subscriptions.push(disposable);
-
 
 	context.subscriptions.push(
 		vscode.languages.registerCompletionItemProvider(

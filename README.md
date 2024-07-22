@@ -8,7 +8,7 @@ Get an Gemini API key from https://aistudio.google.com/app/apikey and set it as 
 
 ## Features
 
-Ask Gemini for coding help using @. It will search everything that is on that line.
+Ask Gemini for coding help using `@`. It will search everything that is on that line.
 
 ![Single line demo](media/single-line-demo.gif)
 
@@ -36,6 +36,6 @@ This extension does not collect any user data however information is being sent 
 
 See full [change log](./CHANGELOG.md)
 
-### 1.0.3 - 2024-07-19
+### 1.0.5 - 2024-07-19
 
 Initial release of Gemini Autocomplete.
