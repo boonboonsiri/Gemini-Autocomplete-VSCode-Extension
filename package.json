@@ -170,7 +170,18 @@
         "aliases": ["HTML", "html"],
         "extensions": [".html", ".htm", ".shtml", ".xhtml"]
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Gemini API Key",
+      "properties": {
+        "gemini-autocomplete.geminiAPIKey": {
+          "type": "string",
+          "default": "",
+          "description": "Gemini API Key for Gemini Assistant"
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",

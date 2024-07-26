@@ -4,7 +4,12 @@ const vscode = require('vscode');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Access your API key as an environment variable.
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+// Access the configuration setting
+const config = vscode.workspace.getConfiguration('gemini-autocomplete');
+const apiKey = config.get('someSetting');
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || apiKey);
 
 const stripCommentMarkers = (input) => {
 	// Remove leading //
