@@ -1,9 +1,9 @@
 # Gemini Autocomplete README
-An AI Autocomplete Extension that works for my uses but feel free to use it as well.
+A less intrusive AI Autocomplete Extension that works for my uses but feel free to use it as well.
 
 ## Setting up
 
-Get an Gemini API key from https://aistudio.google.com/app/apikey and set it as `GEMINI_API_KEY` as an environment variable.
+Get an Gemini API key from https://aistudio.google.com/app/apikey and set it as `GEMINI_API_KEY` as an environment variable or set it as `gemini-autocomplete.geminiAPIKey` in your VSCode settings.
 
 
 ## Features
