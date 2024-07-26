@@ -7,7 +7,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Access the configuration setting
 const config = vscode.workspace.getConfiguration('gemini-autocomplete');
-const apiKey = config.get('someSetting');
+const apiKey = config.get('geminiAPIKey');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || apiKey);
 
@@ -131,3 +131,5 @@ module.exports = {
 	activate,
 	deactivate
 }
+
+

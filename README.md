@@ -36,6 +36,6 @@ This extension does not collect any user data however information is being sent 
 
 See full [change log](./CHANGELOG.md)
 
-### 1.0.5 - 2024-07-19
+### 1.0.6 - 2024-07-19
 
 Initial release of Gemini Autocomplete.
