@@ -3,13 +3,12 @@
 const vscode = require('vscode');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Access your API key as an environment variable.
 
-// Access the configuration setting
-const config = vscode.workspace.getConfiguration('gemini-autocomplete');
-const apiKey = config.get('geminiAPIKey');
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || apiKey);
+// Global Vars
+var config = vscode.workspace.getConfiguration('gemini-autocomplete');
+var apiKey = config.get('geminiAPIKey');
+var promptChar = config.get('promptCharacter') || '@';
+var genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || apiKey);
 
 const stripCommentMarkers = (input) => {
 	// Remove leading //
@@ -68,9 +67,38 @@ const geminiResponse = (text, language) => {
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 function activate(context) {
+	initialize(context);
+
+
+  // Register an event listener for configuration changes
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      // Check if the change affects your extension's configuration
+      if (event.affectsConfiguration('gemini-autocomplete')) {
+        console.log('Configuration changed, reinitializing extension');
+
+        // Optional: Dispose of any resources if necessary
+        // Dispose of all subscriptions by clearing the context
+
+        context.subscriptions.forEach(disposable => disposable.dispose());
+
+        // Re-initialize the extension
+        initialize(context);
+      }
+    })
+  );
+}
+
+const initialize = (context) => {
+	config = vscode.workspace.getConfiguration('gemini-autocomplete');
+
+	apiKey = config.get('geminiAPIKey');
+	promptChar = config.get('promptCharacter') || '@';
+	genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || apiKey);
+
+
 	const disposable = vscode.commands.registerCommand('gemini-autocomplete.activate', async function () {
 		vscode.window.showInformationMessage('Gemini Autocomplete Activated');
-
     // Manually trigger the completion
     await vscode.commands.executeCommand('editor.action.triggerSuggest');
 	});
@@ -85,15 +113,17 @@ function activate(context) {
 				'matlab', 'lua', 'css', 'html'
 			],
 			new AIItemProvider(),
-			'@' // Trigger character
+			promptChar, // Trigger character
 		)
 	);
+
 }
 
 class AIItemProvider {
 	provideCompletionItems(document, position, token, context) {
 		// Return a Promise that resolves with the completion items
 		return new Promise(async (resolve, reject) => {
+
 			try {
 				// Perform your async operation to fetch completion items
 				const items = await this.getCompletionItems(document, position, token);

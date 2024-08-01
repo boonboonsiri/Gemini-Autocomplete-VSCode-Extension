@@ -173,12 +173,17 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Gemini API Key",
+      "title": "Gemini Autocomplete Config",
       "properties": {
         "gemini-autocomplete.geminiAPIKey": {
           "type": "string",
           "default": "",
           "description": "Gemini API Key for Gemini Assistant"
+        },
+        "gemini-autocomplete.promptCharacter": {
+          "type": "string",
+          "default": "@",
+          "description": "Gemini-Autocomplete prompt character"
         }
       }
     }
