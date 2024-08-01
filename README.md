@@ -8,7 +8,7 @@ Get an Gemini API key from https://aistudio.google.com/app/apikey and set it as 
 
 ## Features
 
-Ask Gemini for coding help using `@`. It will search everything that is on that line.
+Ask Gemini for coding help using `@`. It will search everything that is on that line. You can modify this character with `gemini-autocomplete.promptCharacter` in your VSCode settings.
 
 ![Single line demo](media/single-line-demo.gif)
 
@@ -36,6 +36,6 @@ This extension does not collect any user data however information is being sent 
 
 See full [change log](./CHANGELOG.md)
 
-### 1.0.6 - 2024-07-19
+### 1.0.7 - 2024-07-19
 
 Initial release of Gemini Autocomplete.

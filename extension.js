@@ -75,7 +75,6 @@ function activate(context) {
     vscode.workspace.onDidChangeConfiguration((event) => {
       // Check if the change affects your extension's configuration
       if (event.affectsConfiguration('gemini-autocomplete')) {
-        console.log('Configuration changed, reinitializing extension');
 
         // Optional: Dispose of any resources if necessary
         // Dispose of all subscriptions by clearing the context

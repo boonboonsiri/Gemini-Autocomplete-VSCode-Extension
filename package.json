@@ -2,7 +2,7 @@
   "name": "gemini-autocomplete",
   "displayName": "Gemini Autocomplete",
   "description": "An Gemini AI autocomplete in vscode for how I want to use a vscode autocomplete extension",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publisher": "BoonBoonsiri",
   "repository": {
     "type": "git",

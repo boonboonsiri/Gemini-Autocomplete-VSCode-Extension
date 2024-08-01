@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.0.7]
+
+### Added
+- Can modify the extension character instead of just using @
+
+### Fixed
+- Extension auto restarts on changes to settings
+
 ## [1.0.6]
 
 ### Added
