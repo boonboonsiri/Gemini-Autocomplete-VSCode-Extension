@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/boonboonsiri/Gemini-Autocomplete-VSCode-Extension.git"
   },
+  "icon": "logo.jpeg",
   "engines": {
     "vscode": "^1.91.0"
   },

@@ -160,5 +160,3 @@ module.exports = {
 	activate,
 	deactivate
 }
-
-

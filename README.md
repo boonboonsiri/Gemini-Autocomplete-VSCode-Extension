@@ -12,10 +12,9 @@ Ask Gemini for coding help using `@`. It will search everything that is on that 
 
 ![Single line demo](media/single-line-demo.gif)
 
-Additionally get multiline input to provide context using `> Gemini Assistant: Activate Gemini Assistant`
+Additionally get multiline input to provide context using `> Gemini Assistant: Activate Gemini Assistant` or by using the shortcut `alt + g` (can also modify this in your settings)
 
 ![Multiline demo](media/multiline-demo.gif)
-
 
 Support languages include javascript, typescript, python, cpp, rust, kotlin, c, go, java, php, ruby, swift, objective-c, perl, shellscript, scala, haskell, dart, r, matlab, lua, css, html
 
